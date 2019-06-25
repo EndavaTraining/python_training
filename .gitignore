@@ -1,0 +1,11 @@
+__pycache__
+.pytest_cache
+htmlcov
+.cache
+.coverage
+.project
+.pydevproject
+.idea**
+tests/.pytest_cache
+venv
+
