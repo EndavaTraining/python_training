@@ -1,8 +1,8 @@
 import json
 from functools import wraps
 
-from order_api import make_order
-from order_api.service import OrderService
+from user_api import make_user
+from user_api.service import UserService
 
 
 def response(message, status_code):
@@ -33,15 +33,15 @@ def handle_request():
     return decorator
 
 
-class OrderApi:
+class UserApi:
     def __init__(self, context):
         self.context = context
 
     @handle_request()
     def list(self):
-        return [order.to_json() for order in OrderService().list()]
+        return [user.to_json() for user in UserService().list()]
 
     @handle_request()
     def add(self):
-        order = self.context
-        return OrderService().add(make_order(**order))
+        user = self.context
+        return UserService().add(make_user(**user))

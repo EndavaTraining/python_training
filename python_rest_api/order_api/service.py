@@ -1,3 +1,4 @@
+from order_api.domain import Order
 from order_api.repo import OrderRepo
 
 
@@ -8,6 +9,6 @@ class OrderService:
     def list(self):
         return self.repo.list()
 
-    def add(self, order):
+    def add(self, order: Order):
         self.repo.save(order)
         return order.to_json()

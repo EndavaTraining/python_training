@@ -1,8 +1,8 @@
 import json
 from functools import wraps
 
-from order_api import make_order
-from order_api.service import OrderService
+from product_api import make_product
+from product_api.service import ProductService
 
 
 def response(message, status_code):
@@ -33,15 +33,15 @@ def handle_request():
     return decorator
 
 
-class OrderApi:
+class ProductApi:
     def __init__(self, context):
         self.context = context
 
     @handle_request()
     def list(self):
-        return [order.to_json() for order in OrderService().list()]
+        return [product.to_json() for product in ProductService().list()]
 
     @handle_request()
     def add(self):
-        order = self.context
-        return OrderService().add(make_order(**order))
+        product = self.context
+        return ProductService().add(make_product(**product))
