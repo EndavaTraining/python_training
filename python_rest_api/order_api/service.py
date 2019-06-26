@@ -1,10 +1,10 @@
 from order_api.domain import Order
-from order_api.repo import OrderRepo
+from order_api import make_repo
 
 
 class OrderService:
     def __init__(self):
-        self.repo = OrderRepo()
+        self.repo = make_repo()
 
     def list(self):
         return self.repo.list()

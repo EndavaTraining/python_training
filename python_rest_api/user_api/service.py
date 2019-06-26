@@ -1,10 +1,10 @@
 from user_api.domain import User
-from user_api.repo import UserRepo
+from user_api import make_repo
 
 
 class UserService:
     def __init__(self):
-        self.repo = UserRepo()
+        self.repo = make_repo()
 
     def list(self):
         return self.repo.list()

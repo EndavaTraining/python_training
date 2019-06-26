@@ -4,7 +4,7 @@ from product_api import make_product
 from product_api.domain import Product
 
 
-class ProductRepo:
+class ProductFileRepo:
     def __init__(self):
         self.file_name = 'database.json'
         self.key_name = 'products'

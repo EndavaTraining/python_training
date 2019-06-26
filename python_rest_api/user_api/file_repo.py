@@ -4,7 +4,7 @@ from user_api import make_user
 from user_api.domain import User
 
 
-class UserRepo:
+class UserFileRepo:
     def __init__(self):
         self.file_name = 'database.json'
         self.key_name = 'users'

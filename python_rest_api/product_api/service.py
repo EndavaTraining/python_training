@@ -1,10 +1,10 @@
 from product_api.domain import Product
-from product_api.repo import ProductRepo
+from product_api import make_repo
 
 
 class ProductService:
     def __init__(self):
-        self.repo = ProductRepo()
+        self.repo = make_repo()
 
     def list(self):
         return self.repo.list()
