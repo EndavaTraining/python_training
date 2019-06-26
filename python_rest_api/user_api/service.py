@@ -7,8 +7,10 @@ class UserService:
         self.repo = make_repo()
 
     def list(self):
-        return self.repo.list()
+        with self.repo:
+            return self.repo.list()
 
     def add(self, user: User):
-        self.repo.save(user)
-        return user.to_json()
+        with self.repo:
+            self.repo.save(user)
+            return user.to_json()

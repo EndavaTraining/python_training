@@ -7,8 +7,10 @@ class ProductService:
         self.repo = make_repo()
 
     def list(self):
-        return self.repo.list()
+        with self.repo:
+            return self.repo.list()
 
     def add(self, product: Product):
-        self.repo.save(product)
-        return product.to_json()
+        with self.repo:
+            self.repo.save(product)
+            return product.to_json()
