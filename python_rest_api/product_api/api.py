@@ -45,3 +45,8 @@ class ProductApi:
     def add(self):
         product = self.context
         return ProductService().add(make_product(**product))
+
+    @handle_request()
+    def get(self):
+        product_id = self.context.get('product_id')
+        return ProductService().get(product_id)

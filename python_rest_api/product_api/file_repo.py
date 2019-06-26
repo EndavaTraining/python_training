@@ -32,3 +32,8 @@ class ProductFileRepo(RepoInterface):
 
     def list(self):
         return [make_product(**item) for item in self._read_products()]
+
+    def get(self, product_id):
+        products = self._read_products()
+        result = [product for product in products if product['product_id'] == product_id]
+        return make_product(**result[0])

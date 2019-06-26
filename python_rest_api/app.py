@@ -40,6 +40,19 @@ def list_all_products():
     return Response(response=response['body'], status=response['status_code'], content_type='application/json')
 
 
+@app.route("/products/<product_id>", methods=['GET'])
+def get_product(product_id):
+    response = ProductApi({'product_id': product_id}).get()
+    return Response(response=response['body'], status=response['status_code'], content_type='application/json')
+
+
+@app.route("/products", methods=['POST'])
+def add_product():
+    payload = request.get_json()
+    response = ProductApi(payload).add()
+    return Response(response=response['body'], status=response['status_code'], content_type='application/json')
+
+
 @app.route("/users", methods=['GET'])
 def list_all_users():
     response = UserApi({}).list()
