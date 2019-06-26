@@ -15,7 +15,7 @@ def make_repo():
     if 'user' not in repos:
         module = importlib.import_module(f'user_api.{repo_type}_repo')
         repo = getattr(module, f'User{repo_type.title()}Repo')()
-        repos['user'] = repo
+        repos[f'user_{repo_type}'] = repo
         return repo
     else:
-        return repos['user']
+        return repos[f'user_{repo_type}']

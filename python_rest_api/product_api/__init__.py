@@ -15,7 +15,7 @@ def make_repo():
     if 'product' not in repos:
         module = importlib.import_module(f'product_api.{repo_type}_repo')
         repo = getattr(module, f'Product{repo_type.title()}Repo')()
-        repos['product'] = repo
+        repos[f'product_{repo_type}'] = repo
         return repo
     else:
-        return repos['product']
+        return repos[f'product_{repo_type}']

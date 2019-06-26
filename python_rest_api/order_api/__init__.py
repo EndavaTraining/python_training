@@ -15,7 +15,7 @@ def make_repo():
     if 'order' not in repos:
         module = importlib.import_module(f'order_api.{repo_type}_repo')
         repo = getattr(module, f'Order{repo_type.title()}Repo')()
-        repos['order'] = repo
+        repos[f'order_{repo_type}'] = repo
         return repo
     else:
-        return repos['order']
+        return repos[f'order_{repo_type}']
