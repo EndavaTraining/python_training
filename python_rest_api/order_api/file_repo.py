@@ -2,9 +2,10 @@ import json
 
 from order_api import make_order
 from order_api.domain import Order
+from order_api.repo import RepoInterface
 
 
-class OrderFileRepo:
+class OrderFileRepo(RepoInterface):
     def __init__(self):
         self.file_name = 'database.json'
         self.key_name = 'orders'

@@ -2,9 +2,10 @@ import json
 
 from product_api import make_product
 from product_api.domain import Product
+from product_api.repo import RepoInterface
 
 
-class ProductFileRepo:
+class ProductFileRepo(RepoInterface):
     def __init__(self):
         self.file_name = 'database.json'
         self.key_name = 'products'

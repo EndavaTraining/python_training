@@ -2,9 +2,10 @@ import json
 
 from user_api import make_user
 from user_api.domain import User
+from user_api.repo import RepoInterface
 
 
-class UserFileRepo:
+class UserFileRepo(RepoInterface):
     def __init__(self):
         self.file_name = 'database.json'
         self.key_name = 'users'
