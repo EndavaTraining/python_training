@@ -1,9 +1,9 @@
 from setuptools import setup
 
 test_requirements = [
-    'pytest==4.0.1',
-    'coverage==4.5.2',
-    'pytest-cov==2.6.0'
+    'pytest',
+    'coverage',
+    'pytest-cov'
 ]
 
 setup(name='python_rest_api',
@@ -13,5 +13,6 @@ setup(name='python_rest_api',
       author_email='darius.darida@endava.com',
       url='https://github.com/EndavaTraining/python_training.git',
       packages=['order_api', 'product_api', 'user_api'],
-      extras_require={'test': test_requirements}
+      extras_require={'test': test_requirements},
+      install_requires=['Flask']
       )
