@@ -46,4 +46,4 @@ def list_all_users():
     return Response(response=response['body'], status=response['status_code'], content_type='application/json')
 
 
-app.run(port=5000)
+app.run(port=5000, debug=True, host='0.0.0.0')

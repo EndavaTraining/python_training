@@ -1,0 +1,63 @@
+version: '3.4'
+networks:
+  default:
+    ipam:
+      config:
+        - subnet: 10.12.0.0/16
+
+services:
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=admin_user
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=rest-api-be
+    ports:
+      - 5432:5432
+
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    links:
+      - postgres:postgres_db
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=user@domain.com
+      - PGADMIN_DEFAULT_PASSWORD=SuperSecret
+    ports:
+      - 5500:80
+
+  rest_api:
+    build:
+      context: ./python_rest_api
+      network: host
+    image: trainings/python_rest_api
+    restart: always
+    #volumes:
+    #  - /tmp/docs:/docs
+    ports:
+      - 5000:5000
+    depends_on:
+      - postgres
+    links:
+      - postgres:postgres_db
+    #extra_hosts:
+    #  - "service_3rd_party:10.12.0.1"
+    environment:
+      - HOSTNAME=postgres_db
+      - USERNAME=admin_user
+      - PASSWORD=postgres
+      - PORT=5432
+      - DATABASE_NAME=rest-api-be
+      - repo_type=database
+    #command: bash -c "python app.py"
+
+  nginx:
+    image: drdaeman/nginx-ssl-proxy
+    restart: always
+    ports:
+      - 443:443
+    links:
+      - rest_api:rest_api
+    environment:
+      - PROXY_PASS="http://rest_api:5000"

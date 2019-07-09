@@ -1,3 +1,4 @@
+from os import getenv
 from functools import wraps
 
 from sqlalchemy import Column, String
@@ -10,11 +11,11 @@ from user_api.domain import User
 
 from user_api.repo import RepoInterface
 
-HOSTNAME = 'myworkshopserver.postgres.database.azure.com'
-USERNAME = 'admin_user@myworkshopserver'
-PASSWORD = '8SW[@uEyAkx8!A{N'
-PORT = 5432
-DATABASE_NAME = 'postgres'
+HOSTNAME = getenv('HOSTNAME', 'myworkshopserver.postgres.database.azure.com')
+USERNAME = getenv('USERNAME', 'admin_user@myworkshopserver')
+PASSWORD = getenv('PASSWORD', '8SW[@uEyAkx8!A{N')
+PORT = getenv('PORT', '5432')
+DATABASE_NAME = getenv('DATABASE_NAME', 'postgres')
 
 Base = declarative_base()
 
